@@ -80,14 +80,20 @@ public class CPU extends AbstractSM213CPU {
   {
     switch (insOpCode.get()) {
       case 0x0: // ld $i, d .............. 0d-- iiii iiii
-        reg.set (insOp0.get(), insOpExt.get());
-        break;
+          reg.set (insOp0.get(), insOpExt.get());
+          break;
+
       case 0x1: // ld o(rs), rd .......... 1psd  (p = o / 4)
-        // TODO
-        break;
+          // int m = m[(4 * p) + r[s]]
+//          reg.set(insOp2.get(), (insOp0.get() * 4) + insOp1.get());
+          break;
+
       case 0x2: // ld (rs, ri, 4), rd .... 2sid
-        // TODO
-        break;
+
+//          reg.set(insOp2.get(), reg.get(insOp0.get() + ));
+
+          break;
+
       case 0x3: // st rs, o(rd) .......... 3spd  (p = o / 4)
         // TODO
         break;
