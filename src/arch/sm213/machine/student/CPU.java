@@ -82,24 +82,20 @@ public class CPU extends AbstractSM213CPU {
       case 0x0: // ld $i, d .............. 0d-- iiii iiii
           reg.set (insOp0.get(), insOpExt.get());
           break;
-
       case 0x1: // ld o(rs), rd .......... 1psd  (p = o / 4)
-          // int m = m[(4 * p) + r[s]]
-//          reg.set(insOp2.get(), (insOp0.get() * 4) + insOp1.get());
+          // reg.set(regIndex, val)
+          reg.set(insOp2.get(), mem.readInteger(reg.get(insOp1.get()) + 4 * insOp0.get()));
           break;
-
       case 0x2: // ld (rs, ri, 4), rd .... 2sid
-
-//          reg.set(insOp2.get(), reg.get(insOp0.get() + ));
-
+          reg.set(insOp2.get(), mem.readInteger(reg.get(insOp0.get()) + 4 * insOp1.get()));
           break;
-
       case 0x3: // st rs, o(rd) .......... 3spd  (p = o / 4)
-        // TODO
-        break;
+          //x.writeInteger(address, VAL)
+          mem.writeInteger(reg.get(insOp2.get()) + 4 * insOp1.get(), reg.get(insOp0.get()));
+          break;
       case 0x4: // st rs, (rd, ri, 4) .... 4sdi
-        // TODO
-        break;
+          mem.writeInteger(reg.get(insOp1.get()) + 4 * insOp2.get(), reg.get(insOp0.get()));
+          break;
       case 0x6: // ALU ................... 6-sd
 	switch (insOp0.get()) {
 	  case 0x0: // mov rs, rd ........ 60sd
