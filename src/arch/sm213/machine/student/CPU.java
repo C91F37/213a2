@@ -99,28 +99,28 @@ public class CPU extends AbstractSM213CPU {
       case 0x6: // ALU ................... 6-sd
 	switch (insOp0.get()) {
 	  case 0x0: // mov rs, rd ........ 60sd
-            // TODO
+        reg.set(insOp2.get(), reg.get(insOp1.get()));
 	    break;
 	  case 0x1: // add rs, rd ........ 61sd
-            // TODO
+        reg.set(insOp2.get(), reg.get(insOp2.get()) + reg.get(insOp1.get()));
 	    break;
 	  case 0x2: // and rs, rd ........ 62sd
-            // TODO
+        reg.set(insOp2.get(), reg.get(insOp2.get()) & reg.get(insOp1.get()));
 	    break;
 	  case 0x3: // inc rr ............ 63-r
-            // TODO
+        reg.set(insOp2.get(), reg.get(insOp2.get()) + 1);
 	    break;
 	  case 0x4: // inca rr ........... 64-r
-            // TODO
+        reg.set(insOp2.get(), reg.get(insOp2.get()) + 4);
 	    break;
 	  case 0x5: // dec rr ............ 65-r
-            // TODO
+        reg.set(insOp2.get(), reg.get(insOp2.get()) - 1);
 	    break;
 	  case 0x6: // deca rr ........... 66-r
-            // TODO
+        reg.set(insOp2.get(), reg.get(insOp2.get()) - 4);
 	    break;
 	  case 0x7: // not ............... 67-r
-            // TODO
+        reg.set(insOp2.get(), ~reg.get(insOp2.get()));
 	    break;
 	  default:
 	    throw new InvalidInstructionException();
